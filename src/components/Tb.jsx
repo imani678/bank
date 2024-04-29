@@ -1,4 +1,7 @@
-function Table() {
+import React from "react";
+import TransactionTable from "./TransactionTb";
+
+function Table({ word }) {
   return (
     <table>
       <thead>
@@ -9,7 +12,9 @@ function Table() {
           <th>Amount</th>
         </tr>
       </thead>
-      <tbody>{/* Add your table body content here */}</tbody>
+      <tbody>
+        <TransactionTable word={word} />
+      </tbody>
     </table>
   );
 }

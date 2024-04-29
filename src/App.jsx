@@ -1,66 +1,44 @@
-
-import Header from "./components/Header";
-import Search from "./components/Search";
-import Form from "./components/Form";
-import Table from "./components/Tb";
+import React, { useState } from "react";
+import Header from "../src/components/Header";
+import Search from "../src/components/Search";
+import Form from "../src/components/Form";
+import Table from "../src/components/Tb";
 
 function App() {
-  const array = [
+  const [word, setWord] = useState([
     {
-      date: "",
-      description: "",
-      category: "",
-      Amount: "",
+      date: "1/1/2001",
+      description: "lorem",
+      category: "food",
+      amount: "sh.400",
     },
     {
-      date: "",
-      description: "",
-      category: "",
-      Amount: "",
+      date:"2/3/2006",
+      description:"sumn else",
+      category:"cars",
+      amount:"sh.523", 
     },
     {
-      date: "",
-      description: "",
-      category: "",
-      Amount: "",
+      date:"",
+      description:"",
+      category:"",
+      amount:  "",  
     },
     {
-      date: "",
-      description: "",
-      category: "",
-      Amount: "",
-    },
-    {
-      date: "",
-      description: "",
-      category: "",
-      Amount: "",
-    },
-    {
-      date: "",
-      description: "",
-      category: "",
-      Amount: "",
-    },
-    {
-      date: "",
-      description: "",
-      category: "",
-      Amount: "",
-    },
-    {
-      date: "",
-      description: "",
-      category: "",
-      Amount: "",
-    },
-  ];
+      date:"",
+      description:"",
+      category:"",
+      amount:    "",
+    }
+    
+  ]);
+
   return (
     <div>
       <Header />
-      <Search />
+      <Search word={word} setWord={setWord} array={word} />
       <Form />
-      <Table />
+      <Table word={word} />
     </div>
   );
 }
