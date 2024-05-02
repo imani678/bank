@@ -1,6 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-function Form({ word, setWord }) {
+function Form({ transactions, setTransactions }) {
   const [newTransaction, setNewTransaction] = useState({
     Date: "",
     Description: "",
@@ -10,6 +10,7 @@ function Form({ word, setWord }) {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
     setNewTransaction({
       ...newTransaction,
       [name]: value,
@@ -23,18 +24,8 @@ function Form({ word, setWord }) {
       newTransaction.Category &&
       newTransaction.Amount
     ) {
-      // Create a new transaction object
-      const transactionToAdd = {
-        Date: newTransaction.Date,
-        Description: newTransaction.Description,
-        Category: newTransaction.Category,
-        Amount: newTransaction.Amount,
-      };
+      setTransactions([...transactions, newTransaction]);
 
-      // Add the new transaction to the transactions array
-      setWord([...word, transactionToAdd]);
-
-      // Reset the new transaction state to an empty object
       setNewTransaction({
         Date: "",
         Description: "",
@@ -80,11 +71,12 @@ function Form({ word, setWord }) {
           value={newTransaction.Amount}
           onChange={handleInputChange}
         />
-      </div>{" "}
+      </div>
       <div className="col-12">
-        <button onClick={handleAddTransaction}>Add New Transaction</button>
+        <button onClick={handleAddTransaction}>Add Transaction</button>
       </div>
     </div>
   );
 }
+
 export default Form;

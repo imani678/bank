@@ -1,30 +1,25 @@
-import React from "react";
-
-function Search({ word, setWord, array }) {
-  function change(e) {
-    const something = e.target.value.toLowerCase(); // Convert search input to lowercase for case-insensitive matching
-    if (something.length > 0) {
-      const another = word.filter((item) => {
-        return item.description.toLowerCase().includes(something); // Use includes directly as we're already working with lowercase strings
-      });
-      setWord(another); // Update word with filtered results
-    } else {
-      setWord(array); // If search input is empty, display all items
-    }
-  }
+const Search = ({ setTransactions, list }) => {
+  const handleChange = (e) => {
+    const data = e.target.value.trim();
+    setTransactions(
+      data.length > 0
+        ? list.filter((t) =>
+            t.Description.toLowerCase().includes(data.toLowerCase())
+          )
+        : list
+    );
+  };
 
   return (
-    <div>
+    <div className="mb-3">
       <input
-        type="text"
+        onChange={handleChange}
         className="form-control"
-        placeholder="Search by description"
-        aria-label="Search"
-        aria-describedby="basic-addon2"
-        onChange={change}
+        type=""
+        placeholder="Search For Transactions"
       />
     </div>
   );
-}
+};
 
 export default Search;
